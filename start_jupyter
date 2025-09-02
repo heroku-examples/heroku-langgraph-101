@@ -6,17 +6,15 @@ pgcontents init --no-prompt -l ${DATABASE_URL/postgres:/postgresql:} || exit 1
 
 echo "pgcontents initialized"
 
-echo "Installing Jupyter extensions"
-jupyter contrib nbextension install --user
-echo "Extensions installed"
-
-echo "Enabling nbextensions configurator"
-jupyter nbextensions_configurator enable --user
-echo "Nbextensions configurator enabled"
+echo "Setting up JupyterLab extensions"
+# Modern JupyterLab has built-in extension management
+# Widgets are automatically available in JupyterLab 3+
+jupyter labextension list
+echo "JupyterLab extensions ready"
 
 # heroku will override $PS1 when specified as a config var, so we'll set it here to make the jupyter
 # terminal interface a little prettier:
-export PS1='\[\033[01;34m\]\w\[\033[00m\]\$'
+export PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 echo "Starting Jupyter ${JUPYTER_NOTEBOOK_OR_LAB}"
 # NOTE: With allow_origin='*', anyone with the URL and password can potentially access your notebook,

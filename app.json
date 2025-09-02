@@ -3,10 +3,10 @@
   "stack": "heroku-24",
   "buildpacks": [
     {
-        "url": "heroku-community/apt"
+      "url": "heroku-community/apt"
     },
     {
-        "url": "heroku/python"
+      "url": "heroku/python"
     }
   ],
   "env": {
@@ -25,12 +25,16 @@
     }
   },
   "addons": [
-    "heroku-postgresql:essential-1"
+    "heroku-postgresql:essential-1",
+    {
+      "plan": "heroku-inference:claude-4-sonnet",
+      "as": "INFERENCE"
+    }
   ],
   "formation": {
     "web": {
-        "quantity": 1,
-        "size": "standard-1x"
-        }
+      "quantity": 1,
+      "size": "standard-1x"
     }
+  }
 }
